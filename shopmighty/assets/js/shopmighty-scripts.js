@@ -148,50 +148,68 @@
   });
 
   setTimeout(function () {
-    AOS.init({
-      once: true,
-      duration: 1200,
-    });
+    if (typeof AOS !== "undefined") {
+      AOS.init({
+        once: true,
+        duration: 1200,
+      });
+    }
   }, 100);
 
-  $(window).scroll(function () {
-    var scrollTop = $(this).scrollTop();
-    var shopmightyStickyMenu = $(".shopmighty-sticky-menu");
-    var shopmightyStickyNavigation = $(".shopmighty-sticky-navigation");
+  var shopmightyStickyMenu = $(".shopmighty-sticky-menu");
+  var shopmightyScrollTopLink = $(".shopmighty-scrollto-top a");
+  var shopmightyScrollTicking = false;
+
+  function shopmightyHandleScroll() {
+    var scrollTop = $(window).scrollTop();
 
     if (shopmightyStickyMenu.length && scrollTop > 0) {
       shopmightyStickyMenu.addClass("sticky-menu-enabled shopmighty-zoom-in-up");
     } else {
       shopmightyStickyMenu.removeClass("sticky-menu-enabled");
     }
-  });
-  jQuery(window).scroll(function () {
-    if (jQuery(this).scrollTop() > 100) {
-      jQuery(".shopmighty-scrollto-top a").fadeIn();
+
+    if (scrollTop > 100) {
+      shopmightyScrollTopLink.fadeIn();
     } else {
-      jQuery(".shopmighty-scrollto-top a").fadeOut();
+      shopmightyScrollTopLink.fadeOut();
+    }
+
+    shopmightyScrollTicking = false;
+  }
+
+  $(window).on("scroll", function () {
+    if (!shopmightyScrollTicking) {
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(shopmightyHandleScroll);
+      } else {
+        setTimeout(shopmightyHandleScroll, 16);
+      }
+      shopmightyScrollTicking = true;
     }
   });
-  jQuery(".shopmighty-scrollto-top a").click(function () {
-    jQuery("html, body").animate({ scrollTop: 0 }, 600);
+  shopmightyScrollTopLink.click(function () {
+    $("html, body").animate({ scrollTop: 0 }, 600);
     return false;
   });
 
   /* Featured Slider */
-  var shopmightySlider = new Swiper(".shopmighty-slider", {
-    slidesPerView: 1,
-    speed: 1000,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".shopmighty-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".shopmighty-button-next",
-      prevEl: ".shopmighty-button-prev",
-    },
-  });
+  if (typeof Swiper !== "undefined" && $(".shopmighty-slider").length) {
+    var shopmightySlider = new Swiper(".shopmighty-slider", {
+      slidesPerView: 1,
+      speed: 1000,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".shopmighty-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".shopmighty-button-next",
+        prevEl: ".shopmighty-button-prev",
+      },
+    });
+  }
 })(jQuery);
