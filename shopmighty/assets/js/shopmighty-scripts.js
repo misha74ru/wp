@@ -194,20 +194,22 @@
   });
 
   /* Featured Slider */
-  var shopmightySlider = new Swiper(".shopmighty-slider", {
-    slidesPerView: 1,
-    speed: 1000,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".shopmighty-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".shopmighty-button-next",
-      prevEl: ".shopmighty-button-prev",
-    },
-  });
+  if (typeof Swiper !== "undefined" && $(".shopmighty-slider").length) {
+    var shopmightySlider = new Swiper(".shopmighty-slider", {
+      slidesPerView: 1,
+      speed: 1000,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".shopmighty-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".shopmighty-button-next",
+        prevEl: ".shopmighty-button-prev",
+      },
+    });
+  }
 })(jQuery);
