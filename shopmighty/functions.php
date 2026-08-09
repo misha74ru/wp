@@ -102,7 +102,7 @@ if (! function_exists('shopmighty_styles')) :
 	function shopmighty_styles()
 	{
 		// registering style for theme
-		$script_dependencies = array();
+		$script_dependencies = array('jquery');
 
 		wp_enqueue_style('shopmighty-style', get_stylesheet_uri(), array(), SHOPMIGHTY_VERSION);
 		wp_enqueue_style('shopmighty-blocks-style', get_template_directory_uri() . '/assets/css/blocks.css', array(), SHOPMIGHTY_VERSION);
@@ -110,14 +110,12 @@ if (! function_exists('shopmighty_styles')) :
 		if (shopmighty_should_enqueue_aos()) {
 			wp_enqueue_style('shopmighty-aos-style', get_template_directory_uri() . '/assets/css/aos.css', array(), SHOPMIGHTY_VERSION);
 			wp_enqueue_script('shopmighty-aos-scripts', get_template_directory_uri() . '/assets/js/aos.js', array(), SHOPMIGHTY_VERSION, true);
-			wp_script_add_data('shopmighty-aos-scripts', 'strategy', 'defer');
 			$script_dependencies[] = 'shopmighty-aos-scripts';
 		}
 
 		if (shopmighty_should_enqueue_swiper()) {
 			wp_enqueue_style('shopmighty-swiper-bundle-style', get_template_directory_uri() . '/assets/css/swiper-bundle.css', array(), SHOPMIGHTY_VERSION);
 			wp_enqueue_script('shopmighty-swiper-bundle-scripts', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array(), SHOPMIGHTY_VERSION, true);
-			wp_script_add_data('shopmighty-swiper-bundle-scripts', 'strategy', 'defer');
 			$script_dependencies[] = 'shopmighty-swiper-bundle-scripts';
 		}
 
@@ -126,7 +124,6 @@ if (! function_exists('shopmighty_styles')) :
 		}
 
 		wp_enqueue_script('shopmighty-scripts', get_template_directory_uri() . '/assets/js/shopmighty-scripts.js', $script_dependencies, SHOPMIGHTY_VERSION, true);
-		wp_script_add_data('shopmighty-scripts', 'strategy', 'defer');
 	}
 endif;
 
