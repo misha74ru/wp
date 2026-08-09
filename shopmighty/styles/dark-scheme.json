@@ -1,0 +1,147 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "title": "DARK MODE",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#FF3D7A",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#FF9F40",
+          "name": "Secondary"
+        },
+        {
+          "slug": "primary-shade",
+          "color": "#241019",
+          "name": "Primary Shade"
+        },
+        {
+          "slug": "light-color",
+          "color": "#F6F5F7",
+          "name": "Light Color"
+        },
+        {
+          "slug": "black-color",
+          "color": "#0A090C",
+          "name": "Black Color"
+        },
+        {
+          "slug": "heading-color",
+          "color": "#F5F3F6",
+          "name": "Heading Color"
+        },
+        {
+          "slug": "background",
+          "color": "#121116",
+          "name": "Background"
+        },
+        {
+          "slug": "background-alt",
+          "color": "#1C1A21",
+          "name": "Background Alt"
+        },
+        {
+          "slug": "foreground",
+          "color": "#C6C4CC",
+          "name": "Foreground"
+        },
+        {
+          "slug": "meta-color",
+          "color": "#928F99",
+          "name": "Meta Color"
+        },
+        {
+          "slug": "star-color",
+          "color": "#F0EEF2",
+          "name": "Star Color"
+        },
+        {
+          "slug": "border-color",
+          "color": "#302E37",
+          "name": "Border Color"
+        },
+        {
+          "color": "#ffffff00",
+          "name": "Transparent",
+          "slug": "transparent"
+        }
+      ],
+      "duotone": [
+        {
+          "colors": ["#FF3D7A", "#FF9F40"],
+          "slug": "primary-secondary",
+          "name": "Duo 1"
+        },
+        {
+          "colors": ["#FF9F40", "#FF3D7A"],
+          "slug": "secondary-primary",
+          "name": "Duo 2"
+        },
+        {
+          "colors": ["#FF3D7A", "#000000"],
+          "slug": "primary-dark",
+          "name": "Duo 3"
+        },
+        {
+          "colors": ["#000000", "#FF3D7A"],
+          "slug": "dark-primary",
+          "name": "Duo 4"
+        },
+        {
+          "colors": ["#FF3D7A", "#ffffff"],
+          "slug": "primary-light",
+          "name": "Duo 5"
+        },
+        {
+          "colors": ["#ffffff", "#FF3D7A"],
+          "slug": "light-primary",
+          "name": "Duo 6"
+        },
+        {
+          "colors": ["#FF9F40", "#000000"],
+          "slug": "secondary-dark",
+          "name": "Duo 7"
+        },
+        {
+          "colors": ["#000000", "#FF9F40"],
+          "slug": "dark-secondary",
+          "name": "Duo 8"
+        },
+        {
+          "colors": ["#FF9F40", "#ffffff"],
+          "slug": "secondary-light",
+          "name": "Duo 9"
+        },
+        {
+          "colors": ["#ffffff", "#FF9F40"],
+          "slug": "light-secondary",
+          "name": "Duo 10"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "elements": {
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--black-color)",
+          "text": "var(--wp--preset--color--light-color)"
+        },
+        "border": {
+          "color": "var(--wp--preset--color--black-color)"
+        },
+        ":hover": {
+          "color": {
+            "background": "var(--wp--preset--color--primary)",
+            "text": "var(--wp--preset--color--light-color)"
+          }
+        }
+      }
+    }
+  }
+}
