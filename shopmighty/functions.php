@@ -43,12 +43,18 @@ if (! function_exists('shopmighty_styles')) :
 		wp_enqueue_style('shopmighty-style', get_stylesheet_uri(), array(), SHOPMIGHTY_VERSION);
 		wp_enqueue_style('shopmighty-blocks-style', get_template_directory_uri() . '/assets/css/blocks.css', array(), SHOPMIGHTY_VERSION);
 		wp_enqueue_style('shopmighty-aos-style', get_template_directory_uri() . '/assets/css/aos.css', array(), SHOPMIGHTY_VERSION);
+		wp_enqueue_style('shopmighty-swiper-bundle-style', get_template_directory_uri() . '/assets/css/swiper-bundle.css', array(), SHOPMIGHTY_VERSION);
 		if (is_rtl()) {
 			wp_enqueue_style('shopmighty-rtl-css', get_template_directory_uri() . '/assets/css/rtl.css', 'rtl_css', SHOPMIGHTY_VERSION);
 		}
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('shopmighty-aos-scripts', get_template_directory_uri() . '/assets/js/aos.js', array(), SHOPMIGHTY_VERSION, true);
-		wp_enqueue_script('shopmighty-scripts', get_template_directory_uri() . '/assets/js/shopmighty-scripts.js', array(), SHOPMIGHTY_VERSION, true);
+		wp_enqueue_script('shopmighty-swiper-bundle-scripts', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array(), SHOPMIGHTY_VERSION, true);
+		wp_enqueue_script('shopmighty-scripts', get_template_directory_uri() . '/assets/js/shopmighty-scripts.js', array('jquery', 'shopmighty-aos-scripts', 'shopmighty-swiper-bundle-scripts'), SHOPMIGHTY_VERSION, true);
+
+		wp_script_add_data('shopmighty-aos-scripts', 'strategy', 'defer');
+		wp_script_add_data('shopmighty-swiper-bundle-scripts', 'strategy', 'defer');
+		wp_script_add_data('shopmighty-scripts', 'strategy', 'defer');
 	}
 endif;
 
@@ -90,9 +96,13 @@ add_action('admin_enqueue_scripts', 'shopmighty_admin_style');
  */
 function shopmighty_block_assets()
 {
-	wp_enqueue_style('shopmighty-swiper-bundle-editor-style', get_template_directory_uri() . '/assets/css/swiper-bundle.css', array(), SHOPMIGHTY_VERSION);
 	wp_enqueue_style('shopmighty-blocks-style', get_template_directory_uri() . '/assets/css/blocks.css');
-	wp_enqueue_script('shopmighty-swiper-bundle-editor-scripts', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array(), SHOPMIGHTY_VERSION, true);
+
+	if (is_admin()) {
+		wp_enqueue_style('shopmighty-swiper-bundle-editor-style', get_template_directory_uri() . '/assets/css/swiper-bundle.css', array(), SHOPMIGHTY_VERSION);
+		wp_enqueue_script('shopmighty-swiper-bundle-editor-scripts', get_template_directory_uri() . '/assets/js/swiper-bundle.js', array(), SHOPMIGHTY_VERSION, true);
+		wp_script_add_data('shopmighty-swiper-bundle-editor-scripts', 'strategy', 'defer');
+	}
 }
 add_action('enqueue_block_assets', 'shopmighty_block_assets');
 
